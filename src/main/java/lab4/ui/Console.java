@@ -1,8 +1,11 @@
 package lab4.ui;
 
+import com.diogonunes.jcolor.Attribute;
 import lab4.game.*;
 
 import java.util.Scanner;
+import com.diogonunes.jcolor.Ansi;
+import static com.diogonunes.jcolor.Attribute.*;
 
 /**
  * Helper methods for doing console-based user interaction
@@ -13,13 +16,16 @@ public class Console {
         System.out.println(message);
     }
 
+    public static void println(String message, Attribute ... attributes) {
+        System.out.println(Ansi.colorize(message, attributes));
+    }
     /**
      * Prompt the user for input using the given promptMessage
      * @param promptMessage The message to prompt the user with
      * @return The user's response
      */
     public static String prompt(String promptMessage) {
-        System.out.print(promptMessage);
+        System.out.print(Ansi.colorize(promptMessage,CYAN_TEXT(),BOLD()));
         var scanner = new Scanner(System.in);
         return scanner.nextLine();
     }
@@ -46,18 +52,18 @@ public class Console {
         final String helpMessage = "Input must be in the format 'row column', e.g., '1 2' or 't m' for the top middle cell.";
 
         while ( true ) {
-            System.out.print(prompt);
+            System.out.print(Ansi.colorize(prompt,CYAN_TEXT()));
             var input = scanner.nextLine().trim();
 
             if ( input.length() != 3 ) {
-                System.out.println(helpMessage);
+                System.out.println(Ansi.colorize(helpMessage, YELLOW_TEXT()));
                 continue;
             }
 
             var parts = input.split(" ");
 
             if ( parts.length != 2 ) {
-                System.out.println(helpMessage);
+                System.out.println(Ansi.colorize(helpMessage, YELLOW_TEXT()));
                 continue;
             }
 
@@ -67,13 +73,13 @@ public class Console {
                 var pos = new Position(Row.from(parts[0]), Col.from(parts[1]));
 
                 if (board.isOccupiedAt(pos)) {
-                    System.out.println("That position is already taken.");
+                    System.out.println(Ansi.colorize("That position is already taken.", RED_TEXT(),BOLD(),BACK_COLOR(255,200,200)));
                     continue;
                 }
 
                 return pos;
             } catch ( IllegalArgumentException e ) {
-                System.out.println(helpMessage);
+                System.out.println(Ansi.colorize(helpMessage, RED_TEXT()));
             }
         }
     }
