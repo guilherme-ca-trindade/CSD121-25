@@ -1,10 +1,11 @@
-package tictactoe;
+package lab5;
 
-import tictactoe.game.TicTacToeGame;
-import tictactoe.ui.Console;
+import lab5.game.Board;
+import lab5.game.TicTacToeGame;
+import lab5.ui.Console;
 
-import static tictactoe.game.PlayerToken.O;
-import static tictactoe.game.PlayerToken.X;
+import static lab5.game.PlayerToken.O;
+import static lab5.game.PlayerToken.X;
 
 public class Main {
 
@@ -15,7 +16,11 @@ public class Main {
                 Players can be human or computer.  When prompted for player names use one of the following:
                 - To play as a human, just enter a name
                 - To have the player played by the computer enter @ followed by one of the following names:
-                  - TODO: Add the names of the computer players you have implemented here!
+                  - randy : random strategy computer player
+                  - circe : clockwise strategy computer player
+                  - linus : line strategy computer player
+                  - omola : One MOve Look-Ahead strategy computer player, it'll focus on win or block in its movement
+                
                 """);
         var player1 = Console.promptForPlayer(X);
         var player2 = Console.promptForPlayer(O);
@@ -28,7 +33,7 @@ public class Main {
 
             // Display the results of the turn
             Console.println("%s plays %s at %s %s".formatted(turnRecord.whoseTurn().getName(), turnRecord.token(), turnRecord.positionPlayed().row(), turnRecord.positionPlayed().col()));
-            var newBoard = turnRecord.newBoardState();
+            Board newBoard = turnRecord.newBoardState();
             Console.showBoard(newBoard);
 
             // Decide what to do next based on the current status of the game
