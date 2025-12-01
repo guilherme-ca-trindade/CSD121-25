@@ -2,7 +2,7 @@ package lab6.type;
 
 public class IceType extends PokemonType{
     public IceType() {
-        super("ICE");
+        super("ICE","/lab6/ice.png","#96D9D6");
     }
 
     @Override

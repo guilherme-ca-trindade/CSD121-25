@@ -2,7 +2,7 @@ package lab6.type;
 
 public class DarkType extends PokemonType{
     public DarkType(){
-        super("DARK");
+        super("DARK","/lab6/dark.png","#705746");
     }
 
     @Override

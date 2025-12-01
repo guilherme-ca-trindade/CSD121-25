@@ -2,7 +2,7 @@ package lab6.type;
 
 public class WaterType extends PokemonType{
     public WaterType() {
-        super("WATER");
+        super("WATER","/lab6/water.png","#6390F0");
     }
 
     @Override

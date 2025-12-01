@@ -2,7 +2,7 @@ package lab6.type;
 
 public class FireType extends PokemonType {
     public FireType() {
-        super("FIRE");
+        super("FIRE","/lab6/fire.png","#EE8130");
     }
 
     @Override

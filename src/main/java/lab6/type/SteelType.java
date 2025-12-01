@@ -2,7 +2,7 @@ package lab6.type;
 
 public class SteelType extends PokemonType{
     public SteelType(){
-        super("STEEL");
+        super("STEEL","/lab6/steel.png","#B7B7CE");
     }
 
     @Override

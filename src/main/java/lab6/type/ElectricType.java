@@ -2,7 +2,7 @@ package lab6.type;
 
 public class ElectricType extends PokemonType {
     public ElectricType(){
-        super("ELECTRIC");
+        super("ELECTRIC","/lab6/electric.png","#F7D02C");
     }
 
     @Override

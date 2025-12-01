@@ -2,7 +2,7 @@ package lab6.type;
 
 public class PoisonType extends PokemonType{
     public PoisonType(){
-        super("POISON");
+        super("POISON","/lab6/poison.png","#A33EA1");
     }
 
     @Override

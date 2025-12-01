@@ -2,7 +2,7 @@ package lab6.type;
 
 public class FairyType extends PokemonType{
     public FairyType(){
-        super("FAIRY");
+        super("FAIRY","/lab6/fairy.png","#D685AD");
     }
 
     @Override

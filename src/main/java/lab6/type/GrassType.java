@@ -2,7 +2,7 @@ package lab6.type;
 
 public class GrassType extends PokemonType{
     public GrassType(){
-        super("GRASS");
+        super("GRASS","/lab6/grass.png","#7AC74C");
     }
 
     @Override

@@ -2,7 +2,7 @@ package lab6.type;
 
 public class GhostType extends PokemonType{
     public GhostType() {
-        super("GHOST");
+        super("GHOST","/lab6/ghost.png","#735797");
     }
 
     @Override

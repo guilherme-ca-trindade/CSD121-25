@@ -2,7 +2,7 @@ package lab6.type;
 
 public class FlyingType extends PokemonType{
     public FlyingType() {
-        super("FLYING");
+        super("FLYING","/lab6/flying.png","#A98FF3");
     }
 
     @Override

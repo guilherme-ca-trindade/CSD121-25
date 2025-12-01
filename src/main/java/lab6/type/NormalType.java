@@ -2,7 +2,7 @@ package lab6.type;
 
 public class NormalType extends PokemonType{
     public NormalType(){
-        super("NORMAL");
+        super("NORMAL","/lab6/normal.png","#A8A77A");
     }
 
     @Override

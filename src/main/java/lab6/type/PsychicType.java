@@ -2,7 +2,7 @@ package lab6.type;
 
 public class PsychicType extends PokemonType{
     public PsychicType() {
-        super("PSYCHIC");
+        super("PSYCHIC","/lab6/psychic.png","#F95587");
     }
 
     @Override

@@ -2,7 +2,7 @@ package lab6.type;
 
 public class RockType extends PokemonType{
     public RockType() {
-        super("ROCK");
+        super("ROCK","/lab6/rock.png","#B6A136");
     }
 
     @Override

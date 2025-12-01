@@ -2,7 +2,7 @@ package lab6.type;
 
 public class BugType extends PokemonType{
     public BugType(){
-        super("BUG");
+        super("BUG","/lab6/bug.png","#A6B91A");
     }
 
     @Override

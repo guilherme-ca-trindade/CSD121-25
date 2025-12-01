@@ -2,7 +2,7 @@ package lab6.type;
 
 public class GroundType extends PokemonType{
     public GroundType(){
-        super("GROUND");
+        super("GROUND","/lab6/ground.png","#E2BF65");
     }
 
     @Override

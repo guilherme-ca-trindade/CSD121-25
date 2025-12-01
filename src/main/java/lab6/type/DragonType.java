@@ -2,7 +2,7 @@ package lab6.type;
 
 public class DragonType extends PokemonType{
     public DragonType(){
-        super("DRAGON");
+        super("DRAGON","/lab6/dragon.png","#6F35FC");
     }
 
     @Override
