@@ -17,6 +17,10 @@ import javafx.scene.text.TextAlignment;
 import lab6.type.PokemonType;
 import lab6.type.TypeRegistry;
 
+/**
+ * Main view for selecting Pokémon types.
+ * Displays a welcome message and a grid of type buttons.
+ */
 public class TypeSelectorView extends VBox implements EventHandler<ActionEvent> {
 
     private final AppController controller;
@@ -25,55 +29,57 @@ public class TypeSelectorView extends VBox implements EventHandler<ActionEvent> 
     public TypeSelectorView(AppController controller) {
         this.controller = controller;
 
-        // Main layout
+        // Set up the main layout
         this.setStyle("-fx-background-color: transparent;");
         this.setSpacing(20);
         this.setPadding(new Insets(20));
 
-        // Create header with trainer photo and description
+        // Build header and button grid
         HBox header = createHeader();
-
-        // Create button grid for types
         buttonGrid = createButtonGrid();
 
-        // Add components to VBox
         this.getChildren().addAll(header, buttonGrid);
     }
 
+    /**
+     * Creates the header section with trainer image and welcome text.
+     */
     private HBox createHeader() {
         HBox header = new HBox();
         header.setSpacing(20);
         header.setAlignment(Pos.CENTER);
 
         try {
-            // Load trainer photo
+            // Load and display the trainer image
             Image trainerImage = new Image(getClass().getResourceAsStream("/lab6/N.png"));
             ImageView trainerView = new ImageView(trainerImage);
             trainerView.setFitWidth(150);
             trainerView.setFitHeight(150);
             trainerView.setPreserveRatio(true);
 
-            // Create the description box
             VBox descriptionBox = createDescriptionBox();
 
             header.getChildren().addAll(trainerView, descriptionBox);
 
         } catch (Exception e) {
             System.err.println("Warning: Could not load trainer image: " + e.getMessage());
-            // Fallback: just show description without image
+            // Show description only if the image fails to load
             header.getChildren().add(createDescriptionBox());
         }
 
         return header;
     }
 
+    /**
+     * Creates the welcome text box with the styled background.
+     */
     private VBox createDescriptionBox() {
         VBox descriptionBox = new VBox();
         descriptionBox.setSpacing(10);
         descriptionBox.setPadding(new Insets(15));
         descriptionBox.setMaxWidth(400);
 
-        // Box styling
+        // Apply dark background with rounded corners
         descriptionBox.setStyle(
                 "-fx-background-color: rgba(0, 0, 0, 0.7); " +
                         "-fx-background-radius: 10; " +
@@ -82,7 +88,7 @@ public class TypeSelectorView extends VBox implements EventHandler<ActionEvent> 
                         "-fx-border-radius: 10;"
         );
 
-        // Title with pixel-like font
+        // Create title label
         Label title = new Label("HELLO THERE!");
         title.setStyle(
                 "-fx-font-family: 'Courier New'; " +
@@ -93,7 +99,7 @@ public class TypeSelectorView extends VBox implements EventHandler<ActionEvent> 
         );
         title.setTextAlignment(TextAlignment.CENTER);
 
-        // Description text
+        // Create description text
         Text description = new Text(
                 "Welcome to the Pokémon type analyst\n\n" +
                         "Select a Pokémon type to see its strengths,\n" +
@@ -107,7 +113,6 @@ public class TypeSelectorView extends VBox implements EventHandler<ActionEvent> 
         );
         description.setTextAlignment(TextAlignment.CENTER);
 
-        // Center align the text
         title.setAlignment(Pos.CENTER);
         description.setTextAlignment(TextAlignment.CENTER);
 
@@ -117,6 +122,10 @@ public class TypeSelectorView extends VBox implements EventHandler<ActionEvent> 
         return descriptionBox;
     }
 
+    /**
+     * Creates a grid of buttons for all Pokémon types.
+     * Each button displays the type name, icon, and color.
+     */
     private GridPane createButtonGrid() {
         GridPane grid = new GridPane();
         grid.setStyle("-fx-background-color: transparent;");
@@ -125,6 +134,7 @@ public class TypeSelectorView extends VBox implements EventHandler<ActionEvent> 
         grid.setPadding(new Insets(10));
         grid.setAlignment(Pos.CENTER);
 
+        // All 18 Pokémon types
         PokemonType[] allTypes = {
                 TypeRegistry.NORMAL,
                 TypeRegistry.FIRE,
@@ -148,11 +158,13 @@ public class TypeSelectorView extends VBox implements EventHandler<ActionEvent> 
 
         int row = 0;
         int col = 0;
-        int columns = 6;  // Number of columns for the grid
+        int columns = 6;
 
+        // Create a button for each type
         for (PokemonType type : allTypes) {
             Button btn = new Button(type.getName());
 
+            // Try to load type icon
             try {
                 Image img = new Image(getClass().getResourceAsStream(type.getImagePath()));
                 ImageView iv = new ImageView(img);
@@ -164,6 +176,7 @@ public class TypeSelectorView extends VBox implements EventHandler<ActionEvent> 
                 System.err.println("Warning: Could not load image for " + type.getName() + ": " + e.getMessage());
             }
 
+            // Style button with type's theme color
             btn.setStyle(
                     "-fx-background-color: " + type.getThemeColor() + "; " +
                             "-fx-font-family: 'Courier New';" +
@@ -180,6 +193,7 @@ public class TypeSelectorView extends VBox implements EventHandler<ActionEvent> 
             btn.setUserData(type);
             btn.setOnAction(this);
 
+            // Add button to grid and move to next position
             grid.add(btn, col, row);
             col++;
             if (col == columns) {
@@ -191,6 +205,9 @@ public class TypeSelectorView extends VBox implements EventHandler<ActionEvent> 
         return grid;
     }
 
+    /**
+     * Handles button clicks and shows the detail view for selected type.
+     */
     @Override
     public void handle(ActionEvent event) {
         Button clicked = (Button) event.getSource();

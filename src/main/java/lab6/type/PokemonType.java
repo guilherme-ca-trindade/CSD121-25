@@ -6,6 +6,13 @@ import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 
+
+/**
+ * Abstract base class representing a Pokémon type.
+ * Each type has a name, icon, color, and effectiveness relationships with other types.
+ * Subclasses must implement loadRelations() to define type matchups.
+ */
+
 public abstract class PokemonType {
     private final String name;
     private final String imagePath;
@@ -34,6 +41,13 @@ public abstract class PokemonType {
         return themeColor;
     }
 
+    /**
+     * Creates a new Pokémon type.
+     * @param name Display the name of the type
+     * @param imagePath Path to the type's icon image
+     * @param themeColor Hex color code for the type's theme
+     */
+
     public PokemonType(String name, String imagePath, String themeColor) {
         this.name = name;
         this.imagePath = imagePath;
@@ -52,7 +66,11 @@ public abstract class PokemonType {
         return noEffect;
     }
 
-    //Return the effectiveness against the opponent Pokémon type
+    /**
+     * Calculates the effectiveness multiplier of this type against an opponent type.
+     * @param opponent The opposing Pokémon type
+     * @return 2.0 for super effective, 0.5 for not very effective, 0.0 for no effect, 1.0 for neutral
+     */
     public double effectivenessAgainst (PokemonType opponent) {
         if  (superEffective.contains(opponent)) return 2.0;
         else if (notVeryEffective.contains(opponent)) return 0.5;
@@ -60,7 +78,10 @@ public abstract class PokemonType {
         else return 1.0;
     }
 
-    //Void class method so each subclass fills its lists
+    /**
+     * Abstract method for subclasses to populate their effectiveness lists.
+     * Each subclass must define which types it's strong/weak against.
+     */
     public abstract void loadRelations();
 }
 

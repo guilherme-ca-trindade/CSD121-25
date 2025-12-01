@@ -7,12 +7,16 @@ import javafx.scene.layout.*;
 import javafx.stage.Stage;
 import lab6.type.PokemonType;
 
+/**
+ * Controls navigation between views in the Pokémon type analyzer.
+ * Manages the main stage and switches between selector and detail views.
+ */
 public class AppController {
     private final Stage stage;
-    //Root with the background image (Pokémon battleground)
     private final StackPane root;
     private TypeSelectorView selectorView;
-    //The detail view changes, according to the Pokémon type clicked
+    
+    // The detail view changes, according to the Pokémon type clicked
     private TypeDetailView detailView;
 
     public AppController(Stage stage){
@@ -21,8 +25,7 @@ public class AppController {
         selectorView = new TypeSelectorView(this);
         StackPane.setAlignment(selectorView, Pos.CENTER);
 
-
-        // Load battleground background
+        // Load and set the battleground background image
         try {
             Image bgImage = new Image(
                     getClass().getResourceAsStream("/lab6/Battleground.png")
@@ -46,27 +49,35 @@ public class AppController {
             root.setBackground(new Background(bg));
 
         } catch (Exception e) {
-            // If the image fails to load, continue without the background
+            // Continue without the background if the image fails to load
             System.err.println("Warning: Could not load background image: " + e.getMessage());
         }
 
-
+        // Set up scene and display stage
         Scene scene = new Scene(root, 800, 600);
         stage.setScene(scene);
         stage.show();
         showTypeSelector();
     }
 
+    /**
+     * Shows the type selector view with all Pokémon types.
+     */
     public void showTypeSelector(){
         selectorView = new TypeSelectorView(this);
         StackPane.setAlignment(selectorView, Pos.CENTER);
         root.getChildren().setAll(selectorView);
     }
 
+    /**
+     * Shows the detail view for a specific Pokémon type.
+     * @param type The Pokémon type to display details for
+     */
     public void showTypeDetail(PokemonType type){
         detailView = new TypeDetailView(this, type);
         StackPane.setAlignment(detailView, Pos.CENTER);
 
+        // Set size and transparency for the detail panel
         detailView.setMaxWidth(500);
         detailView.setOpacity(0.95);
         root.getChildren().setAll(detailView);
