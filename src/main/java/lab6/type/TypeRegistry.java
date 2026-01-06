@@ -20,6 +20,8 @@ public class TypeRegistry {
     public static final SteelType STEEL = new SteelType();
     public static final FairyType FAIRY = new FairyType();
 
+
+
     static {
         NORMAL.loadRelations();
         FIRE.loadRelations();

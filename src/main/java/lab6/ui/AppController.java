@@ -54,7 +54,7 @@ public class AppController {
         }
 
         // Set up scene and display stage
-        Scene scene = new Scene(root, 800, 600);
+        Scene scene = new Scene(root, 900, 600);
         stage.setScene(scene);
         stage.show();
         showTypeSelector();
